@@ -21,7 +21,7 @@ const FavoritesScreen = props => {
                         params: {
                             item: itemData.item,
                             color: 'blue'
-                        }
+                        } 
                     })
                 }}
             />
