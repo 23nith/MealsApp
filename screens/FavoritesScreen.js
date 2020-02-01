@@ -6,13 +6,14 @@ import MealsGridTile from '../components/MealsGridTile';
 // import {MEALS} from '../data/dummy-data';
 import {useSelector} from 'react-redux';
 
-const favorites = useSelector(state => state.meals.meals);
+
 
 // const favorites = MEALS.filter(meal => {
 //     return meal.id === 'm1' || meal.id === 'm2'
 // })
 
 const FavoritesScreen = props => {
+    const favorites = useSelector(state => state.meals.favoriteMeals);
     const renderGridItem = itemData => {
         return (
             <MealsGridTile

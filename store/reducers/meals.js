@@ -1,4 +1,5 @@
-import {MEALS} from '../../data/dummy-data'
+import {MEALS} from '../../data/dummy-data';
+import {TOGGLE_FAVORITE} from '../actions/meals';
 
 const initialState = {
     meals: MEALS,
@@ -13,11 +14,18 @@ const mealsReducer = (state = initialState, action) => {
                 meal => meal.id === action.mealId 
                 );
             if (existingIndex >= 0 ) {
+                // if it is already included in the favoriteMeals
+                // copy favoriteMeal array as new array
                 const updatedFavMeals = [...state.favoriteMeals];
+                // remove the meal from the array copy
                 updatedFavMeals.splice(existingIndex, 1);
+                // replace old favoriteMeals array with edited copy of said array
                 return {...state, favoriteMeals: updatedFavMeals};
-            } else { 
+            } else {
+                // if it is NOT yet included in the favoriteMeals
+                // find the meal object in the meal sub state
                 const meal = state.meals.find(meal => meal.id === action.mealId);
+                // add the meal in the favoriteMeals array
                 return {...state, favoriteMeals: state.favoriteMeals.concat(meal)}
             }
         default: 
