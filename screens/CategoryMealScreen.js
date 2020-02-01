@@ -1,11 +1,16 @@
 import React from 'react';
 import {FlatList} from 'react-native';
 import MealsGridTile from '../components/MealsGridTile';
-import {MEALS} from '../data/dummy-data';
+// import {MEALS} from '../data/dummy-data';
+import {useSelector} from 'react-redux';
 
 const CategoryMealScreen = props => {
     const id = props.navigation.getParam('id');
-    const mealList = MEALS.filter(item => {
+    const availableMeals = useSelector(state => state.meals.filteredMeals);
+    // const mealList = MEALS.filter(item => {
+    //     return item.categoryIds.indexOf(id) !== -1
+    // })
+    const mealList = availableMeals.filter(item => {
         return item.categoryIds.indexOf(id) !== -1
     })
     const renderGridItem = itemData => {
@@ -18,6 +23,7 @@ const CategoryMealScreen = props => {
                         routeName: "MealDetails",
                         params: {
                             item: itemData.item,
+                            mealId: itemData.item.id,
                             color: props.navigation.getParam('color')
                         }
                     })
