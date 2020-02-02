@@ -24,7 +24,8 @@ const FavoritesScreen = props => {
                         routeName: "MealDetails",
                         params: {
                             item: itemData.item,
-                            color: 'blue'
+                            color: 'blue',
+                            mealId: itemData.item.id
                         } 
                     })
                 }}
